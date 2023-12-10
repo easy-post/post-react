@@ -66,7 +66,10 @@ const NewPost = () => {
             .post(`${IMAGE_SERVER}/save`, {
               type: type[1],
               file: e.target.result,
-            })
+            },{headers:{
+              "Access-Control-Allow-Origin": `https://post-react.onrender.com`,
+              'Access-Control-Allow-Credentials':"true",
+            }})
             .then((res) => {
               const $img = document.createElement("img");
               console.log(res.data);
