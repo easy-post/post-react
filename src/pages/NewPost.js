@@ -63,15 +63,19 @@ const NewPost = () => {
 
         fileReader.onload = (e) => {
           axios
-            .post(`${IMAGE_SERVER}/save`, {
-              type: type[1],
-              file: e.target.result,
-            },{
-              withCredentials: true,
-              headers:{
-              "Content-Type" : "application/json",
-              "Access-Control-Allow-Origin": "https://image-server-n6n6.onrender.com/save"
-            }})
+            .post(
+              `${IMAGE_SERVER}/save`,
+              {
+                type: type[1],
+                file: e.target.result,
+              },
+              {
+                withCredentials: true,
+                headers: {
+                  "Content-Type": "application/json",
+                },
+              }
+            )
             .then((res) => {
               const $img = document.createElement("img");
               console.log(res.data);
