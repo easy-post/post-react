@@ -68,7 +68,7 @@ const NewPost = () => {
               file: e.target.result,
             },{headers:{
               "Content-Type" : "application/json",
-              "Access-Control-Allow-Origin": "https://post-react.onrender.com"
+              "Access-Control-Allow-Origin": "https://image-server-n6n6.onrender.com/save"
             }})
             .then((res) => {
               const $img = document.createElement("img");
