@@ -1,0 +1,12 @@
+li{
+  display: flex;
+  box-sizing: border-box;
+  border-bottom: 1px solid #333;
+  padding: .3rem 0;
+  gap: 1rem;
+
+  .postId{flex: 1;}
+  .title{flex: 6;}
+  .date{flex: 2;}
+  .author{flex: 3;}
+}

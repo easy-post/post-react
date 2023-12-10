@@ -1,0 +1,10 @@
+.LogoutBtn{
+  width: 80px;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+
+  &:hover{
+    text-decoration: underline;
+  }
+}

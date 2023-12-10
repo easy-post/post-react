@@ -1,0 +1,23 @@
+.Post {
+  .contentWrap {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: 20px;
+    padding: 20px 40px;
+
+    .title {
+      border: none;
+      padding: 1rem 0;
+      font-size: 1.3rem;
+      box-sizing: border-box;
+      border-bottom: 1px solid #000000;
+    }
+
+    .content {
+      min-height: 400px;
+      border-bottom: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+  }
+}

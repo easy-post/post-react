@@ -1,0 +1,8 @@
+.App{
+  a{
+    transition: .3s;
+    &:hover{
+      color: rgb(235, 1, 1);
+    }
+  }
+}

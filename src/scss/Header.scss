@@ -1,0 +1,43 @@
+.Header{
+  .inner{
+    padding-top: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+
+    .LogoutBtn{
+      align-self: flex-end;
+    }
+
+    .logo-wrap{
+      text-align: center;
+      padding: 2rem 0;
+      font-size: 1.6rem;
+      a{
+        display: block;
+      }
+    }
+
+    .menu-wrap{
+      width: 100%;
+      .menu{
+        display: flex;
+        justify-content: space-between;
+        font-size: 2rem;
+        
+        li{
+          flex: 0 0 200px;
+
+          a{
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 20px 0;
+          }
+        }
+      }
+    }
+
+
+  }
+}
