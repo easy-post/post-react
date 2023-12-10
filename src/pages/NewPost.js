@@ -68,6 +68,7 @@ const NewPost = () => {
               file: e.target.result,
             },{headers:{
               "Content-Type" : "application/json",
+              "Access-Control-Allow-Origin": "*"
             }})
             .then((res) => {
               const $img = document.createElement("img");
