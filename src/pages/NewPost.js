@@ -66,7 +66,9 @@ const NewPost = () => {
             .post(`${IMAGE_SERVER}/save`, {
               type: type[1],
               file: e.target.result,
-            },{headers:{
+            },{
+              withCredentials: true,
+              headers:{
               "Content-Type" : "application/json",
               "Access-Control-Allow-Origin": "https://image-server-n6n6.onrender.com/save"
             }})
