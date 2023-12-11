@@ -135,7 +135,7 @@ const Login = () => {
         }
       )
       .then((res) => {
-        if (!res.ok) return res.json();
+        if (!res.status == 200) return res.data;
       })
       .then((data) => {
         if (data === undefined) {
