@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import ApiAdress from '../constants/ApiAddress';
-import '../scss/Login.css';
-import useLoginCheck from '../components/LoginCheck';
-import { useLocation, useNavigate } from 'react-router';
+import ApiAdress from "../constants/ApiAddress";
+import "../scss/Login.css";
+import useLoginCheck from "../components/LoginCheck";
+import { useLocation, useNavigate } from "react-router";
 
 const Login = () => {
   const [isNicknameValid, setIsNicknameValid] = useState(false);
@@ -23,21 +23,23 @@ const Login = () => {
     initNicknameValid();
   };
 
-  const registerClose = (e)=>{
+  const registerClose = (e) => {
     e.preventDefault();
     $registerModal.current.style.display = "none";
-  }
+  };
 
-  const registerOpen = (e)=>{
+  const registerOpen = (e) => {
     e.preventDefault();
     $registerModal.current.style.display = "block";
-  }
+  };
 
-  const nicknameDuplicateValid = (e)=>{
+  const nicknameDuplicateValid = (e) => {
     e.preventDefault();
     if (!emptyValid($registerForm.current.nickname.value)) return;
     console.log($registerForm.current.nickname.value);
-    fetch(`${ApiAdress.LOCAL_MEMBER}/valid/nickname/${$registerForm.current.nickname.value}`)
+    fetch(
+      `${ApiAdress.LOCAL_MEMBER}/valid/nickname/${$registerForm.current.nickname.value}`
+    )
       .then((res) => {
         console.log(res);
         return res.json();
@@ -56,14 +58,13 @@ const Login = () => {
       .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
-
-  const registy = (e)=>{
+  const registy = (e) => {
     e.preventDefault();
-    if (!registerAllValid()){
+    if (!registerAllValid()) {
     }
-  
+
     if (!isNicknameValid) {
       console.log("닉네임 인증을 해 주세요.");
       return;
@@ -86,13 +87,13 @@ const Login = () => {
           $registerForm.current.loginId.value = "";
           $registerForm.current.password.value = "";
           $registerForm.current.nickname.value = "";
-          $faildRegister.current.style.display = 'none';
+          $faildRegister.current.style.display = "none";
           $registerModal.current.querySelector(
             ".success.register--message"
           ).style.display = "block";
         }
         return res.json();
-  
+
         // 리다이렉트는 프론트엔드 서버에서 처리
       })
       .then((data) => {
@@ -102,38 +103,48 @@ const Login = () => {
       })
       .catch((err) => {
         $faildRegister.current.textContent = err.message;
-        $faildRegister.current.style.display = 'block';
+        $faildRegister.current.style.display = "block";
         console.log(err);
       });
-  }
+  };
 
-  const login = (e)=>{
+  const login = (e) => {
     e.preventDefault();
     if (
-      !(emptyValid(e.target.loginId.value) && emptyValid(e.target.password.value))
+      !(
+        emptyValid(e.target.loginId.value) &&
+        emptyValid(e.target.password.value)
+      )
     ) {
       $emptyMsg.current.style.display = "block";
     }
-  
-    fetch(`${ApiAdress.LOCAL_MEMBER}/login`, {
-      method: "POST",
-      body: JSON.stringify({
-        loginId: e.target.loginId.value,
-        password: e.target.password.value,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
-    })
+
+    axios
+      .post(
+        `${ApiAdress.LOCAL_MEMBER}/login`,
+        {
+          loginId: e.target.loginId.value,
+          password: e.target.password.value,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         if (!res.ok) return res.json();
       })
       .then((data) => {
         if (data === undefined) {
           console.log("로그인 성공");
-          if(location.state === null) navigate("/");
-          navigate(location.state.nextPath !== undefined? location.state.nextPath : "/");
+          if (location.state === null) navigate("/");
+          navigate(
+            location.state.nextPath !== undefined
+              ? location.state.nextPath
+              : "/"
+          );
         } else {
           throw new Error(data.message);
         }
@@ -143,40 +154,38 @@ const Login = () => {
         $faildLoginMsg.current.textContent = err.message;
         $faildLoginMsg.current.style.display = "block";
       });
-  }
-
-
-
-
-
-
+  };
 
   function emptyValid(str) {
     if (str.includes(" ")) return false;
     return str.length > 0;
   }
-  
+
   function registerAllValid() {
     if (!emptyValid($registerForm.current.loginId.value)) return false;
     if (!emptyValid($registerForm.current.password.value)) return false;
     if (!emptyValid($registerForm.current.nickname.value)) return false;
     return true;
   }
-  
+
   function initNicknameValid() {
     setIsNicknameValid(false);
     $nicknameValidSuccessMsg.current.style.display = "none";
   }
 
-
   return (
     <div className="Login">
       <div className="inner">
         <h1>
-          <img src={process.env.PUBLIC_URL + '/images/logo.png'} alt="logo"></img>
+          <img
+            src={process.env.PUBLIC_URL + "/images/logo.png"}
+            alt="logo"
+          ></img>
         </h1>
         <form className="login--form" method="post" onSubmit={login}>
-          <p className="failed empty" ref={$emptyMsg}>모두 입력해 주세요.</p>
+          <p className="failed empty" ref={$emptyMsg}>
+            모두 입력해 주세요.
+          </p>
           <input
             type="text"
             name="loginId"
@@ -198,7 +207,12 @@ const Login = () => {
 
       <div id="register--modal" ref={$registerModal}>
         <div className="inner">
-          <form className="register--form" method="post" ref={$registerForm} onSubmit={registy}>
+          <form
+            className="register--form"
+            method="post"
+            ref={$registerForm}
+            onSubmit={registy}
+          >
             <input
               type="text"
               name="loginId"
@@ -217,11 +231,19 @@ const Login = () => {
               <button onClick={nicknameDuplicateValid}>중복 확인</button>
             </div>
 
-            <p className="success nickname--message" ref={$nicknameValidSuccessMsg}>
+            <p
+              className="success nickname--message"
+              ref={$nicknameValidSuccessMsg}
+            >
               사용 가능한 닉네임 입니다!
             </p>
-            <p className="failed nickname--message" ref={$nicknameValidFailedMsg}>중복된 닉네임 입니다.</p>
-            <input 
+            <p
+              className="failed nickname--message"
+              ref={$nicknameValidFailedMsg}
+            >
+              중복된 닉네임 입니다.
+            </p>
+            <input
               type="password"
               name="password"
               placeholder="비밀번호"
