@@ -67,13 +67,18 @@ const NewPost = () => {
         $loading.setAttribute('alt', "loading image");
         $loading.classList.add('loading--img');
         $imgWrap.appendChild($loading);
+
+
         const selection = window.getSelection();
         const range = selection.getRangeAt(0);
         range.deleteContents();
         range.insertNode($imgWrap);
+        const $emptyP = document.createElement('p');
+
+        $imgWrap.insertAdjacentElement("afterend", $emptyP);
 
         const newRange = document.createRange();
-        newRange.setStartAfter($loading);
+        newRange.setStartAfter($emptyP, 0);
         newRange.collapse(true);
         selection.removeAllRanges();
         selection.addRange(newRange);
@@ -98,20 +103,6 @@ const NewPost = () => {
             )
             .then((res) => {
               const $img = document.createElement("img");
-
-              $img.setAttribute("src", res.data);
-              $img.setAttribute("alt", "content image");
-
-              // const selection = window.getSelection();
-              // const range = selection.getRangeAt(0);
-              // range.deleteContents();
-              // range.insertNode($img);
-
-              // const newRange = document.createRange();
-              // newRange.setStartAfter($img);
-              // newRange.collapse(true);
-              // selection.removeAllRanges();
-              // selection.addRange(newRange);
 
               $imgWrap.removeChild($loading);
               $imgWrap.appendChild($img)
