@@ -10,6 +10,7 @@ import ApiAdress from "../constants/ApiAddress";
 // import { useNavigate } from 'react-router';
 
 const NewPost = () => {
+  const EXPORT_HOST = "https://post-react.onrender.com";
   const IMAGE_SERVER = "https://image-server-n6n6.onrender.com";
   const location = useLocation();
   const $content = useRef();
@@ -58,6 +59,25 @@ const NewPost = () => {
       const type = file.type.split("/");
 
       if (type[0] === "image") {
+        const $imgWrap = document.createElement('div');
+        $imgWrap.classList.add('img--wrap');
+
+        const $loading = document.createElement('img');
+        $loading.setAttribute('src', `${EXPORT_HOST + '/images/utility/loading.png'}`);
+        $loading.setAttribute('alt', "loading image");
+        $loading.classList.add('loading--img');
+        $imgWrap.appendChild($loading);
+        const selection = window.getSelection();
+        const range = selection.getRangeAt(0);
+        range.deleteContents();
+        range.insertNode($imgWrap);
+
+        const newRange = document.createRange();
+        newRange.setStartAfter($loading);
+        newRange.collapse(true);
+        selection.removeAllRanges();
+        selection.addRange(newRange);
+
         const fileReader = new FileReader();
         fileReader.readAsDataURL(file);
 
@@ -78,21 +98,23 @@ const NewPost = () => {
             )
             .then((res) => {
               const $img = document.createElement("img");
-              console.log(res.data);
 
               $img.setAttribute("src", res.data);
               $img.setAttribute("alt", "content image");
 
-              const selection = window.getSelection();
-              const range = selection.getRangeAt(0);
-              range.deleteContents();
-              range.insertNode($img);
+              // const selection = window.getSelection();
+              // const range = selection.getRangeAt(0);
+              // range.deleteContents();
+              // range.insertNode($img);
 
-              const newRange = document.createRange();
-              newRange.setStartAfter($img);
-              newRange.collapse(true);
-              selection.removeAllRanges();
-              selection.addRange(newRange);
+              // const newRange = document.createRange();
+              // newRange.setStartAfter($img);
+              // newRange.collapse(true);
+              // selection.removeAllRanges();
+              // selection.addRange(newRange);
+
+              $imgWrap.removeChild($loading);
+              $imgWrap.appendChild($img)
             })
             .catch((err) => {
               console.log(err);

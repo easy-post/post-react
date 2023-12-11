@@ -28,9 +28,20 @@
       min-height: 400px;
       border-bottom: 1px solid #ccc;
       box-sizing: border-box;
-
+      
       &:focus{
         outline: none;
+      }
+
+      .loading--img{
+        display: block;
+        animation: ani-loading 2s infinite linear;
+        width: 100px; height: 100px;
+      }
+
+      @keyframes ani-loading {
+        0%{transform: rotateZ(0);}
+        100%{transform: rotateZ(360deg);}
       }
     }
 
