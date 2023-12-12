@@ -135,10 +135,9 @@ const Login = () => {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
         if(data.success === false) throw new Error(data.message);
         console.log("로그인 성공");
-        document.cookie = `sessionId=${res.data.sessionId}; max-age=1800; domain=post-react.onrender.com;path=/`;
+        document.cookie = `sessionId=${document.cookie.split('=')[1]}; max-age=1800; domain=post-react.onrender.com;path=/`;
         if (location.state === null) navigate("/");
         navigate(
           location.state.nextPath !== undefined ? location.state.nextPath : "/"
