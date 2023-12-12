@@ -135,17 +135,20 @@ const Login = () => {
         }
       )
       .then((res) => {
-        if (!res.status == 200) return res.data;
+        if (!res.status == 200) throw new Error(res.data.message);
+
+        console.log("로그인 성공");
+        document.cookie = res.data.cookieStr;
+        if (location.state === null) navigate("/");
+        navigate(
+          location.state.nextPath !== undefined
+            ? location.state.nextPath
+            : "/"
+        );
       })
       .then((data) => {
         if (data === undefined) {
-          console.log("로그인 성공");
-          if (location.state === null) navigate("/");
-          navigate(
-            location.state.nextPath !== undefined
-              ? location.state.nextPath
-              : "/"
-          );
+
         } else {
           throw new Error(data.message);
         }
