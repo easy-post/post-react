@@ -132,9 +132,10 @@ const Login = () => {
       },
     })
       .then((res) => {
-        console.log(res);
-        if (!res.status == 200) throw new Error(res.data.message);
-
+        return res.json();
+      })
+      .then((data) => {
+        if(data.success !== undefined) throw new Error(data.message);
         console.log("로그인 성공");
         console.log(res.data);
         document.cookie = `sessionId=${res.data.sessionId}; max-age=1800; domain=post-react.onrender.com;path=/`;
