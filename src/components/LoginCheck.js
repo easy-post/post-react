@@ -8,10 +8,6 @@ function useLoginCheck(nextPath) {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const checkLogin = () => {
-    let sessionId;
-    if(document.cookie) {
-      sessionId = getSessionIdInLocal();
-    }
     fetch(`${ApiAdress.LOCAL_MEMBER}/valid-login`, {
       // method:"POST",
       // body:sessionId,
@@ -29,7 +25,6 @@ function useLoginCheck(nextPath) {
           navigate("/login", { state: { nextPath, hello: "nice" } });
           throw new Error(data.message);
         }else{
-          document.cookie = `sessionId=${getSessionIdInLocal()};max-age=1800;domain=post-react.onrender.com;path=/`;
           setIsChecked(true);
         }
       })
@@ -38,9 +33,7 @@ function useLoginCheck(nextPath) {
         setIsChecked(false);
       });
   }
-  function getSessionIdInLocal(){
-    return document.cookie.split('=')[1];
-  }
+
 
 
 
