@@ -135,6 +135,7 @@ const Login = () => {
         }
       )
       .then((res) => {
+        console.log(res.data);
         if (!res.status == 200) throw new Error(res.data.message);
 
         console.log("로그인 성공");
