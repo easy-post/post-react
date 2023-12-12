@@ -145,7 +145,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
-        $faildLoginMsg.current.textContent = err.message;
+        $faildLoginMsg.current.textContent = err;
         $faildLoginMsg.current.style.display = "block";
       });
   };
