@@ -28,6 +28,7 @@ const NewPost = () => {
       .post(
         `${ApiAdress.LOCAL_POST}/save`,
         {
+          sessionId:getSessionIdInLocal(),
           title: e.target.title.value,
           html: $content.current.innerHTML,
         },
@@ -59,21 +60,23 @@ const NewPost = () => {
       const type = file.type.split("/");
 
       if (type[0] === "image") {
-        const $imgWrap = document.createElement('div');
-        $imgWrap.classList.add('img--wrap');
+        const $imgWrap = document.createElement("div");
+        $imgWrap.classList.add("img--wrap");
 
-        const $loading = document.createElement('img');
-        $loading.setAttribute('src', `${EXPORT_HOST + '/images/utility/loading.png'}`);
-        $loading.setAttribute('alt', "loading image");
-        $loading.classList.add('loading--img');
+        const $loading = document.createElement("img");
+        $loading.setAttribute(
+          "src",
+          `${EXPORT_HOST + "/images/utility/loading.png"}`
+        );
+        $loading.setAttribute("alt", "loading image");
+        $loading.classList.add("loading--img");
         $imgWrap.appendChild($loading);
-
 
         const selection = window.getSelection();
         const range = selection.getRangeAt(0);
         range.deleteContents();
         range.insertNode($imgWrap);
-        const $emptyP = document.createElement('p');
+        const $emptyP = document.createElement("p");
 
         $imgWrap.insertAdjacentElement("afterend", $emptyP);
 
@@ -105,7 +108,7 @@ const NewPost = () => {
               const $img = document.createElement("img");
 
               $imgWrap.removeChild($loading);
-              $imgWrap.appendChild($img)
+              $imgWrap.appendChild($img);
             })
             .catch((err) => {
               console.log(err);
@@ -114,6 +117,10 @@ const NewPost = () => {
       }
     }
   };
+
+  function getSessionIdInLocal() {
+    return document.cookie.split("=")[1];
+  }
 
   return (
     <div className="NewPost">
