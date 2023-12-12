@@ -128,7 +128,7 @@ const Login = () => {
       }),
       headers: {
         "Content-Type": "application/json",
-        "Credentials": true,
+        credentials: 'include'
       },
     })
       .then((res) => {
