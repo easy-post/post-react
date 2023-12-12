@@ -14,9 +14,7 @@ function useLoginCheck(nextPath) {
     }
     fetch(`${ApiAdress.LOCAL_MEMBER}/valid-login`, {
       method:"POST",
-      body:JSON.stringify({
-        sessionId
-      }),
+      body:sessionId,
       credentials: "include",
       mode: "cors",
     })
