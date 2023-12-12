@@ -138,6 +138,7 @@ const Login = () => {
         if (!res.status == 200) throw new Error(res.data.message);
 
         console.log("로그인 성공");
+        console.log(res.data);
         document.cookie = res.data.cookieStr;
         if (location.state === null) navigate("/");
         navigate(
