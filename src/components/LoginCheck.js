@@ -13,8 +13,10 @@ function useLoginCheck(nextPath) {
       sessionId = getSessionIdInLocal();
     }
     fetch(`${ApiAdress.LOCAL_MEMBER}/valid-login`, {
-      sessionId
-    },{
+      method:"POST",
+      body:JSON.stringify({
+        sessionId
+      }),
       credentials: "include",
       mode: "cors",
     })
