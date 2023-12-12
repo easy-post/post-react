@@ -18,6 +18,15 @@
       min-height: 400px;
       border-bottom: 1px solid #ccc;
       box-sizing: border-box;
+
+      .img--wrap{
+        max-width: 100%;
+
+        img{
+          max-width: 100%;
+          object-fit: contain;
+        }
+      }
     }
   }
 }
