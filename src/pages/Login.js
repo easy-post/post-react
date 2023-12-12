@@ -120,24 +120,26 @@ const Login = () => {
       $emptyMsg.current.style.display = "block";
     }
 
-    fetch(`${ApiAdress.LOCAL_MEMBER}/login`, {
-      method: "POST",
-      body: JSON.stringify({
-        loginId: e.target.loginId.value,
-        password: e.target.password.value,
-      }),
+    const loginData = {
+      loginId: e.target.loginId.value,
+      password: e.target.password.value,
+    };
+
+    // axios로 POST 요청
+    axios({
+      method: "post",
+      url: `${ApiAdress.LOCAL_MEMBER}/login`,
+      data: loginData,
+      withCredentials: true, // 쿠키를 포함하여 요청을 보내기 위한 설정
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Request-Headers":"Set-Cookie"
       },
-      credentials: 'include'
-
     })
       .then((res) => {
-        return res.json();
+        return res.data;
       })
       .then((data) => {
-        if(data.success === false) throw new Error(data.message);
+        if (data.success === false) throw new Error(data.message);
         console.log("로그인 성공");
         if (location.state === null) navigate("/");
         navigate(
