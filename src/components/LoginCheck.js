@@ -13,8 +13,8 @@ function useLoginCheck(nextPath) {
       // body:sessionId,
       headers: {
         "Content-Type": "application/json",
-        credentials: 'include'
       },
+      credentials: 'include'
     })
       .then((res) => {
         return res.json();
