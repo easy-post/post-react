@@ -127,6 +127,7 @@ const Login = () => {
         password: e.target.password.value,
       }),
       headers: {
+        "Content-Type": "application/json",
         "Credentials": true,
       },
     })
