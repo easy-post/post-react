@@ -128,6 +128,7 @@ const Login = () => {
       }),
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Request-Headers":"Set-Cookie"
       },
       credentials: 'include'
 
