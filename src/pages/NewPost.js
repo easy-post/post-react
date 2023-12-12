@@ -105,7 +105,10 @@ const NewPost = () => {
               }
             )
             .then((res) => {
+              if(!(res.status == 200)) throw new Error(res.data);
               const $img = document.createElement("img");
+              $img.setAttribute("src", res.data);
+              $img.setAttribute("alt", "post picture");
 
               $imgWrap.removeChild($loading);
               $imgWrap.appendChild($img);
