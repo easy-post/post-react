@@ -3,6 +3,7 @@ import '../scss/Loading.scss';
 
 const Loading = () => {
   const EXPORT_HOST = "https://post-react.onrender.com";
+
   return (
     <div className="loading--wrap">
       <div className="loading--circle">
