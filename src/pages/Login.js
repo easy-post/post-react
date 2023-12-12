@@ -148,13 +148,6 @@ const Login = () => {
             : "/"
         );
       })
-      .then((data) => {
-        if (data === undefined) {
-
-        } else {
-          throw new Error(data.message);
-        }
-      })
       .catch((err) => {
         console.log(err);
         $faildLoginMsg.current.textContent = err.message;
