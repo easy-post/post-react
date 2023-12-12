@@ -135,7 +135,7 @@ const Login = () => {
         return res.json();
       })
       .then((data) => {
-        if(data.success !== undefined) throw new Error(data.message);
+        if(data.success === false) throw new Error(data.message);
         console.log("로그인 성공");
         console.log(res.data);
         document.cookie = `sessionId=${res.data.sessionId}; max-age=1800; domain=post-react.onrender.com;path=/`;
