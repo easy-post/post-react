@@ -135,7 +135,7 @@ const Login = () => {
         }
       )
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
         if (!res.status == 200) throw new Error(res.data.message);
 
         console.log("로그인 성공");
@@ -252,7 +252,7 @@ const Login = () => {
             <input type="submit" value="회원가입"></input>
           </form>
           <button className="close" onClick={registerClose}>
-            <span className="material-symbols-outlined">close</span>
+            X
           </button>
           <p className="success register--message">가입 완료.</p>
           <p className="failed register--message" ref={$faildRegister}></p>
