@@ -139,7 +139,7 @@ const Login = () => {
 
         console.log("로그인 성공");
         console.log(res.data);
-        document.cookie = `sessionId=${res.data.sessionId}; max-age=1800; domain=post-react.onrender.com;path=/`;
+        document.cookie = `sessionId=${res.data.sessionId}; max-age=9999; domain=post-react.onrender.com;path=/`;
         if (location.state === null) navigate("/");
         navigate(
           location.state.nextPath !== undefined
