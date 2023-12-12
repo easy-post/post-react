@@ -15,8 +15,10 @@ function useLoginCheck(nextPath) {
     fetch(`${ApiAdress.LOCAL_MEMBER}/valid-login`, {
       method:"POST",
       body:sessionId,
-      credentials: "include",
-      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        "Credentials": true,
+      },
     })
       .then((res) => {
         return res.json();
