@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 function useLoginCheck(nextPath) {
 
-  `sessionId=${res.data.sessionId};max-age=1800;domain=post-react.onrender.com;path=/`;
+  
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const checkLogin = () => {
@@ -27,6 +27,7 @@ function useLoginCheck(nextPath) {
           navigate("/login", { state: { nextPath, hello: "nice" } });
           throw new Error(data.message);
         }else{
+          document.cookie = `sessionId=${getSessionIdInLocal()};max-age=1800;domain=post-react.onrender.com;path=/`;
           setIsChecked(true);
         }
       })
