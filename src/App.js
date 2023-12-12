@@ -11,7 +11,6 @@ function App() {
   useEffect(() => {
     window.addEventListener("beforeunload", () => {
       axios.get(`${ApiAdress.LOCAL}/logout`);
-      document.cookie =`sessionId=;max-age=0;domain=post-react.onrender.com;path=/`;
     });
   }, []);
 
