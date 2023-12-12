@@ -3,7 +3,7 @@ import ApiAdress from "../constants/ApiAddress";
 import "../scss/Login.css";
 import useLoginCheck from "../components/LoginCheck";
 import { useLocation, useNavigate } from "react-router";
-import axios from 'axios';
+import axios from "axios";
 
 const Login = () => {
   const [isNicknameValid, setIsNicknameValid] = useState(false);
@@ -120,20 +120,17 @@ const Login = () => {
       $emptyMsg.current.style.display = "block";
     }
 
-    axios
-      .post(
-        `${ApiAdress.LOCAL_MEMBER}/login`,
-        {
-          loginId: e.target.loginId.value,
-          password: e.target.password.value,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true,
-        }
-      )
+    fetch(`${ApiAdress.LOCAL_MEMBER}/login`, {
+      method: "POST",
+      body: JSON.stringify({
+        loginId: e.target.loginId.value,
+        password: e.target.password.value,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        Credentials: true,
+      },
+    })
       .then((res) => {
         console.log(res);
         if (!res.status == 200) throw new Error(res.data.message);
@@ -143,9 +140,7 @@ const Login = () => {
         document.cookie = `sessionId=${res.data.sessionId}; max-age=1800; domain=post-react.onrender.com;path=/`;
         if (location.state === null) navigate("/");
         navigate(
-          location.state.nextPath !== undefined
-            ? location.state.nextPath
-            : "/"
+          location.state.nextPath !== undefined ? location.state.nextPath : "/"
         );
       })
       .catch((err) => {
