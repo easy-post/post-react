@@ -12,8 +12,13 @@ const LogoutBtn = () => {
         credentials: 'include'
       })
       .then((res)=>{
+        deleteCookie();
         navigate(location.pathname);
       })
+  }
+
+  function deleteCookie(){
+    document.cookie =`sessionId=;max-age=0;domain=post-react.onrender.com;path=/`;
   }
   return (
     <button onClick={onLogout} className="LogoutBtn">로그아웃</button>
