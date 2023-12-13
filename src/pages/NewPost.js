@@ -121,10 +121,6 @@ const NewPost = () => {
     }
   };
 
-  function getSessionIdInLocal() {
-    return document.cookie.split("=")[1];
-  }
-
   return (
     <div className="NewPost">
       <CoverScreenLoading style={{display:isSaving?'flex':'none'}}>

@@ -23,4 +23,4 @@ const PostListElement = ({post, today}) => {
   )
 }
 
-export default PostListElement
+export default React.memo(PostListElement);
