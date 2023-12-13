@@ -1,0 +1,31 @@
+.Posts{
+  .post--wrap{
+    form{
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      align-items: center;
+
+      .search--input--wrap{
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        
+        input{
+          margin-bottom: 1rem;
+        }
+      }
+      button{
+        width: 70px;
+        padding: .8rem 0;
+        border-radius: 10px;
+        border: none;
+        transition: .2s;
+
+        &:hover{
+          background-color: #ccc;
+        }
+      }
+    }
+  }
+}

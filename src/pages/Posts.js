@@ -39,15 +39,18 @@ const Posts = () => {
     }
   }, []);
 
-
-  const search = (e)=>{
+  const search = (e) => {
+    e.preventDefault();
     setIsLoading(true);
-    axios.get(`${ApiAdress.LOCAL_POST}?title=${e.target.title}&nickname=${e.target.nickname}`)
-    .then((res) => {
-      setPosts(res.data.content);
-      setIsLoading(false);
-    });
-  }
+    axios
+      .get(
+        `${ApiAdress.LOCAL_POST}?title=${e.target.title}&nickname=${e.target.nickname}`
+      )
+      .then((res) => {
+        setPosts(res.data.content);
+        setIsLoading(false);
+      });
+  };
 
   return (
     <div className="Posts">
@@ -56,12 +59,13 @@ const Posts = () => {
       ) : (
         <div className="post--wrap">
           <form onSubmit={search}>
-            <label htmlFor="search_title">글 제목 :</label>
-            <input type="text" name="title" id="search_title" />
+            <div className="search--input--wrap">
+              <label htmlFor="search_title">글 제목 :</label>
+              <input type="text" name="title" id="search_title" />
 
-            <label htmlFor="search_title">닉네임</label>
-            <input type="text" name="nickname" id="search_nickname" />
-
+              <label htmlFor="search_title">닉네임</label>
+              <input type="text" name="nickname" id="search_nickname" />
+            </div>
             <button type="submit">검색</button>
           </form>
           <ul className="post--list">
