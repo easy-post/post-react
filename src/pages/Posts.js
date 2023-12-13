@@ -12,7 +12,9 @@ const Posts = () => {
   const location = useLocation();
   axios.defaults.withCredentials = true;
 
+  console.log(location.pathname);
   useEffect(() => {
+
     switch (location.pathname) {
       case "/post":
         axios.get(`${ApiAdress.LOCAL_POST}`).then((res) => {
@@ -26,7 +28,6 @@ const Posts = () => {
         {withCredentials:true}
         )
         .then((res) => {
-          console.log(res.data);
           setPosts(res.data.content);
           setIsLoading(false);
         });
@@ -40,7 +41,7 @@ const Posts = () => {
         break;
     }
     
-  }, []);
+  }, [location]);
 
   return (
     <div className="Posts">
