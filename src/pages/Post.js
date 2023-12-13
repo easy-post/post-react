@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import "../scss/Post.scss";
 import axios from "axios";
 import ApiAdress from "./../constants/ApiAddress";
-import { useParams } from "react-router";
-import Loading from '../components/Loading';
+import { useNavigate, useParams } from "react-router";
+import Loading from "../components/Loading";
 
 const Post = () => {
   const [isLoadPage, setIsLoadPage] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const {postId} = useParams();
+  const { postId } = useParams();
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get(`${ApiAdress.LOCAL_POST}/${postId}`)
@@ -23,14 +24,21 @@ const Post = () => {
         console.log(err);
       });
   }, []);
-  
+
+  const edit = (e)=>{
+    navigate(`${location.pathname}/edit`);
+  }
+
   return (
     <div className="Post">
       {isLoadPage ? (
         <div className="contentWrap">
-          <button>수정</button>
+          <button onClick={edit}>수정</button>
           <p className="title">{title}</p>
-          <div className="content" dangerouslySetInnerHTML={{__html:content}}></div>
+          <div
+            className="content"
+            dangerouslySetInnerHTML={{ __html: content }}
+          ></div>
         </div>
       ) : (
         <Loading />

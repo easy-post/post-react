@@ -10,7 +10,7 @@ const Main = () => {
     <main className='Main'>
       <div className="inner">
         <Routes>
-          <Route path='/post/edit/:postId' element={<NewPost/>}></Route>
+          <Route path='/post/:postId/edit' element={<NewPost/>}></Route>
           <Route path='/post/:postId' element={<Post/>}></Route>
           <Route path='/post/new' element={<NewPost/>}></Route>
           <Route path='/post/member' element={<Posts/>}></Route>

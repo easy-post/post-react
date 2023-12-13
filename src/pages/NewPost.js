@@ -16,39 +16,84 @@ const NewPost = () => {
   const navigate = useNavigate();
   const [isSaving, setIsSaving] = useState(false);
 
+  const $title = useRef();
+
   useEffect(() => {
-    checkLogin("/post/new");
+    switch (location.pathname) {
+      case "/post/new":
+        checkLogin("/post/new");
+        break;
+
+      default:
+        axios.get(`${ApiAdress.LOCAL}${location.pathname}`, {
+          withCredentials:true,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then(res=>{
+          if(!res.status===200) throw new Error(res.data.message);
+
+          $title.current.value = res.data.title;
+          $content.current.innerHTML = res.data.html;
+        })
+        .catch(err=>{
+          console.log(err);
+        })
+        break;
+    }
   }, [checkLogin]);
 
   const savePost = (e) => {
     e.preventDefault();
     setIsSaving(true);
 
-    axios
-      .post(
-        `${ApiAdress.LOCAL_POST}/save`,
-        {
-          title: e.target.title.value,
-          html: $content.current.innerHTML,
-        },
-        {
-          withCredentials: true,
-          headers: {
-            "Content-Type": "application/json",
+    switch (location.pathname) {
+      case "/post/new":
+        axios
+        .post(
+          `${ApiAdress.LOCAL_POST}/save`,
+          {
+            title: e.target.title.value,
+            html: $content.current.innerHTML,
           },
-        }
-      )
-      .then((res) => {
-        setIsSaving(false);
-        if (res.status !== 200) {
-          throw new Error(res.data);
-        } else {
+          {
+            withCredentials: true,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((res) => {
+          setIsSaving(false);
+          if (res.status !== 200) {
+            throw new Error(res.data);
+          } else {
+            navigate(`/post/${res.data.id}`);
+          }
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+        break;
+
+      default:
+        axios.post(`${ApiAdress.LOCAL}${location.pathname}`,{
+          title:e.target.title.value,
+          html:$content.current.innerHTML
+        },{
+          withCredentials:true,
+          headers:{"Content-Type":"application/json"}
+        })
+        .then(res=>{
+          if(!res.status === 200) throw new Error(res.data.message);
+
           navigate(`/post/${res.data.id}`);
-        }
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+        })
+        
+        break;
+
+
   };
 
   const onPasteHandler = (e) => {
@@ -123,12 +168,12 @@ const NewPost = () => {
 
   return (
     <div className="NewPost">
-      <CoverScreenLoading style={{display:isSaving?'flex':'none'}}>
+      <CoverScreenLoading style={{ display: isSaving ? "flex" : "none" }}>
         <p>저장 중...</p>
       </CoverScreenLoading>
       {isChecked ? (
         <form onSubmit={savePost}>
-          <input type="text" name="title" id="title" placeholder="제목" />
+          <input type="text" name="title" id="title" placeholder="제목" ref={$title}/>
           <div
             className="content"
             contentEditable="true"
