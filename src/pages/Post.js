@@ -28,6 +28,7 @@ const Post = () => {
     <div className="Post">
       {isLoadPage ? (
         <div className="contentWrap">
+          <button>수정</button>
           <p className="title">{title}</p>
           <div className="content" dangerouslySetInnerHTML={{__html:content}}></div>
         </div>
