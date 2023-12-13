@@ -5,9 +5,7 @@ import useLoginCheck from "../components/LoginCheck";
 import { useLocation, useNavigate } from "react-router";
 import Loading from "../components/Loading";
 import ApiAdress from "../constants/ApiAddress";
-// import ApiAdress from '../constants/ApiAddress';
-// import ApiAdress from './ApiAddress';
-// import { useNavigate } from 'react-router';
+import CoverScreenLoading from "../components/CoverScreenLoading";
 
 const NewPost = () => {
   const EXPORT_HOST = "https://post-react.onrender.com";
@@ -16,6 +14,7 @@ const NewPost = () => {
   const $content = useRef();
   const { checkLogin, isChecked } = useLoginCheck(location.pathname);
   const navigate = useNavigate();
+  const $saveLoading = useRef();
 
   useEffect(() => {
     checkLogin("/new");
@@ -23,12 +22,12 @@ const NewPost = () => {
 
   const savePost = (e) => {
     e.preventDefault();
+    $saveLoading.current.style.display = flex;
 
     axios
       .post(
         `${ApiAdress.LOCAL_POST}/save`,
         {
-          sessionId:getSessionIdInLocal(),
           title: e.target.title.value,
           html: $content.current.innerHTML,
         },
@@ -40,6 +39,7 @@ const NewPost = () => {
         }
       )
       .then((res) => {
+        $saveLoading.current.style.display = none;
         if (res.status !== 200) {
           throw new Error(res.data);
         } else {
@@ -105,7 +105,7 @@ const NewPost = () => {
               }
             )
             .then((res) => {
-              if(!(res.status == 200)) throw new Error(res.data);
+              if (!(res.status == 200)) throw new Error(res.data);
               const $img = document.createElement("img");
               $img.setAttribute("src", res.data);
               $img.setAttribute("alt", "post picture");
@@ -127,6 +127,9 @@ const NewPost = () => {
 
   return (
     <div className="NewPost">
+      <CoverScreenLoading ref={$saveLoading}>
+        <p>저장 중...</p>
+      </CoverScreenLoading>
       {isChecked ? (
         <form onSubmit={savePost}>
           <input type="text" name="title" id="title" placeholder="제목" />

@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 function useLoginCheck(nextPath) {
 
-  const location = useLocation();
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const checkLogin = () => {
@@ -18,7 +17,7 @@ function useLoginCheck(nextPath) {
         console.log(data);
         if (data.success === false) {
           console.log(data);
-          navigate("/login", { state: { nextPath} });
+          navigate("/login", { state: {nextPath} });
           throw new Error(data.message);
         }else{
           setIsChecked(true);
