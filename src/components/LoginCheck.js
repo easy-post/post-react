@@ -9,11 +9,6 @@ function useLoginCheck(nextPath) {
   const [isChecked, setIsChecked] = useState(false);
   const checkLogin = () => {
     fetch(`${ApiAdress.LOCAL_MEMBER}/valid-login`, {
-      // method:"POST",
-      // body:sessionId,
-      headers: {
-        "Content-Type": "application/json",
-      },
       credentials: 'include'
     })
       .then((res) => {
@@ -22,7 +17,7 @@ function useLoginCheck(nextPath) {
       .then((data) => {
         if (data.success !== undefined) {
           console.log(data);
-          navigate("/login", { state: { nextPath, hello: "nice" } });
+          navigate("/login", { state: { nextPath} });
           throw new Error(data.message);
         }else{
           setIsChecked(true);
