@@ -21,7 +21,10 @@ const Posts = () => {
         break;
 
       case "/post/member":
-        axios.get(`${ApiAdress.LOCAL_POST}/member`).then((res) => {
+        axios.get(`${ApiAdress.LOCAL_POST}/member`,
+        {withCredentials:true}
+        )
+        .then((res) => {
           setPosts(res.data.content);
           setIsLoading(false);
         });
