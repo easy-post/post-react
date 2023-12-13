@@ -13,6 +13,7 @@ const Posts = () => {
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
+    setIsLoading(true);
     switch (location.pathname) {
       case "/post":
         axios.get(`${ApiAdress.LOCAL_POST}`).then((res) => {
