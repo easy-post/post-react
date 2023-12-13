@@ -6,7 +6,7 @@ const PostListElement = ({post, midnight}) => {
   const date = new Date(post.createdTime);
   date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
   const getDisplayDate = ()=>{
-    if(date > midnight){
+    if(date < midnight){
       return date.toLocaleDateString();
     }else{
       return date.toLocaleTimeString();

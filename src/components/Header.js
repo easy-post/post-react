@@ -21,7 +21,7 @@ const Header = () => {
               <Link to={"/post"}>글 목록</Link>
             </li>
             <li>
-              <Link to={"/new"}>새 글</Link>
+              <Link to={"/post/new"}>새 글</Link>
             </li>
             <li>
               <Link to={"/post/member"}>내 글</Link>
