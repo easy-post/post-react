@@ -9,6 +9,7 @@ const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const today = new Date();
+  const midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate(),0,0,0,0);
   const location = useLocation();
   axios.defaults.withCredentials = true;
 
@@ -73,7 +74,7 @@ const Posts = () => {
           <ul className="post--list">
             {posts.map((post) => {
               return (
-                <PostListElement post={post} key={post.id} today={today} />
+                <PostListElement post={post} key={post.id} midnight={midnight} />
               );
             })}
           </ul>
