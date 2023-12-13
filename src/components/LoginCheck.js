@@ -22,7 +22,6 @@ function useLoginCheck(nextPath) {
           throw new Error(data.message);
         }else{
           setIsChecked(true);
-          navigate(location.state.nextPath === undefined? "/" : location.state.nextPath);
         }
       })
       .catch((err) => {

@@ -18,7 +18,7 @@ const NewPost = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    checkLogin();
+    checkLogin("/new");
   }, [checkLogin]);
 
   const savePost = (e) => {

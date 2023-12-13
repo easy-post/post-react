@@ -1,9 +1,7 @@
 import React, { useRef, useState } from "react";
 import ApiAdress from "../constants/ApiAddress";
 import "../scss/Login.css";
-import useLoginCheck from "../components/LoginCheck";
 import { useLocation, useNavigate } from "react-router";
-import axios from "axios";
 
 const Login = () => {
   const [isNicknameValid, setIsNicknameValid] = useState(false);
@@ -18,7 +16,6 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  useLoginCheck();
 
   const handlerNicknameKeydown = (e) => {
     initNicknameValid();
