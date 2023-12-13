@@ -36,7 +36,7 @@ const NewPost = () => {
           .then((res) => {
             if (!res.status === 200) throw new Error(res.data.message);
             
-            console.log($title.current);
+            console.log($content.current);
             $title.current.value = res.data.title;
             $content.current.innerHTML = res.data.html;
           })
