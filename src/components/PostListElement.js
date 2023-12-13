@@ -5,6 +5,8 @@ import '../scss/PostListElement.scss';
 const PostListElement = ({post, today}) => {
   const date = new Date(post.createdTime);
   date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+  console.log(date.getDay());
+  console.log(today.getDay());
   const getDisplayDate = ()=>{
     if(date.getDay() > today.getDay()){
       return date.toLocaleDateString();
