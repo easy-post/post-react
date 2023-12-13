@@ -37,11 +37,12 @@ const Posts = () => {
         });
         break;
     }
-  }, []);
+  }, [location.pathname]);
 
   const search = (e) => {
     e.preventDefault();
     setIsLoading(true);
+    
     axios
       .get(
         `${ApiAdress.LOCAL_POST}?title=${e.target.title.value}&nickname=${e.target.nickname.value}`
