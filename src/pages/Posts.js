@@ -37,7 +37,7 @@ const Posts = () => {
         });
         break;
     }
-  }, [location]);
+  }, []);
 
 
   const search = (e)=>{
@@ -51,7 +51,7 @@ const Posts = () => {
 
   return (
     <div className="Posts">
-      {true ? (
+      {isLoading ? (
         <Loading />
       ) : (
         <div className="post--wrap">
