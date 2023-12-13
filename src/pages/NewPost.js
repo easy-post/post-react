@@ -22,7 +22,7 @@ const NewPost = () => {
 
   const savePost = (e) => {
     e.preventDefault();
-    $saveLoading.current.style.display = flex;
+    setIsSaving(true);
 
     axios
       .post(
@@ -39,7 +39,7 @@ const NewPost = () => {
         }
       )
       .then((res) => {
-        $saveLoading.current.style.display = none;
+        setIsSaving(false);
         if (res.status !== 200) {
           throw new Error(res.data);
         } else {
