@@ -1,10 +1,10 @@
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import ApiAdress from "../constants/ApiAddress";
 import { useState } from 'react';
 
 function useLoginCheck(nextPath) {
 
-  
+  const location = useLocation();
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useState(false);
   const checkLogin = () => {
@@ -12,17 +12,17 @@ function useLoginCheck(nextPath) {
       credentials: 'include'
     })
       .then((res) => {
-        console.log(res);
         return res.json();
       })
       .then((data) => {
         console.log(data);
-        if (data.success !== undefined) {
+        if (data.success === false) {
           console.log(data);
           navigate("/login", { state: { nextPath} });
           throw new Error(data.message);
         }else{
           setIsChecked(true);
+          navigate(location.state.nextPath === undefined? "/" : location.state.nextPath);
         }
       })
       .catch((err) => {
