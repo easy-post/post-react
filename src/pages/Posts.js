@@ -26,6 +26,7 @@ const Posts = () => {
         {withCredentials:true}
         )
         .then((res) => {
+          console.log(res.data);
           setPosts(res.data.content);
           setIsLoading(false);
         });
@@ -38,7 +39,7 @@ const Posts = () => {
         });
         break;
     }
-    console.log(posts);
+    
   }, []);
 
   return (
