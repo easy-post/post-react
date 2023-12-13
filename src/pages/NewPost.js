@@ -34,6 +34,7 @@ const NewPost = () => {
           })
           .then((res) => {
             if (!res.status === 200) throw new Error(res.data.message);
+            
 
             $title.current.value = res.data.title;
             $content.current.innerHTML = res.data.html;
@@ -172,9 +173,9 @@ const NewPost = () => {
 
     return (
       <div className="NewPost">
-        <CoverScreenLoading style={{ display: isSaving ? "flex" : "none" }}>
+        {/* <CoverScreenLoading style={{ display: isSaving ? "flex" : "none" }}>
           <p>저장 중...</p>
-        </CoverScreenLoading>
+        </CoverScreenLoading> */}
         {isChecked ? (
           <form onSubmit={savePost}>
             <input
