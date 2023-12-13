@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../scss/Post.scss";
 import axios from "axios";
 import ApiAdress from "./../constants/ApiAddress";
-import { useLocation, useParams } from "react-router";
+import { useParams } from "react-router";
 import Loading from '../components/Loading';
 
 const Post = () => {

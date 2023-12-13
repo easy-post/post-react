@@ -11,7 +11,7 @@ const Main = () => {
       <div className="inner">
         <Routes>
           <Route path='/' element={<Posts/>}></Route>
-          <Route path='/posts' element={<Posts/>}></Route>
+          <Route path='/post' element={<Posts/>}></Route>
           <Route path='/new' element={<NewPost/>}></Route>
           <Route path='/user/:id/posts' element={<Posts/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
