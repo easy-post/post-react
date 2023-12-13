@@ -12,9 +12,7 @@ const Posts = () => {
   const location = useLocation();
   axios.defaults.withCredentials = true;
 
-  console.log(location.pathname);
   useEffect(() => {
-
     switch (location.pathname) {
       case "/post":
         axios.get(`${ApiAdress.LOCAL_POST}`).then((res) => {
@@ -24,13 +22,12 @@ const Posts = () => {
         break;
 
       case "/post/member":
-        axios.get(`${ApiAdress.LOCAL_POST}/member`,
-        {withCredentials:true}
-        )
-        .then((res) => {
-          setPosts(res.data.content);
-          setIsLoading(false);
-        });
+        axios
+          .get(`${ApiAdress.LOCAL_POST}/member`, { withCredentials: true })
+          .then((res) => {
+            setPosts(res.data.content);
+            setIsLoading(false);
+          });
         break;
 
       default:
@@ -40,19 +37,41 @@ const Posts = () => {
         });
         break;
     }
-    
   }, [location]);
+
+
+  const search = (e)=>{
+    setIsLoading(true);
+    axios.get(`${ApiAdress.LOCAL_POST}?title=${e.target.title}&nickname=${e.target.nickname}`)
+    .then((res) => {
+      setPosts(res.data.content);
+      setIsLoading(false);
+    });
+  }
 
   return (
     <div className="Posts">
-      {isLoading ? (
+      {true ? (
         <Loading />
       ) : (
-        <ul className="post--list">
-          {posts.map((post) => {
-            return <PostListElement post={post} key={post.id} today={today} />;
-          })}
-        </ul>
+        <div className="post--wrap">
+          <form onSubmit={search}>
+            <label htmlFor="search_title">글 제목 :</label>
+            <input type="text" name="title" id="search_title" />
+
+            <label htmlFor="search_title">닉네임</label>
+            <input type="text" name="nickname" id="search_nickname" />
+
+            <button type="submit">검색</button>
+          </form>
+          <ul className="post--list">
+            {posts.map((post) => {
+              return (
+                <PostListElement post={post} key={post.id} today={today} />
+              );
+            })}
+          </ul>
+        </div>
       )}
     </div>
   );
