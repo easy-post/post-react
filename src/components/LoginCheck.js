@@ -12,6 +12,7 @@ function useLoginCheck(nextPath) {
       credentials: 'include'
     })
       .then((res) => {
+        console.log(res);
         return res.json();
       })
       .then((data) => {
