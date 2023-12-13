@@ -44,7 +44,7 @@ const Posts = () => {
     setIsLoading(true);
     axios
       .get(
-        `${ApiAdress.LOCAL_POST}?title=${e.target.title}&nickname=${e.target.nickname}`
+        `${ApiAdress.LOCAL_POST}?title=${e.target.title.value}&nickname=${e.target.nickname.value}`
       )
       .then((res) => {
         setPosts(res.data.content);
