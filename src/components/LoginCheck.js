@@ -15,6 +15,7 @@ function useLoginCheck(nextPath) {
         return res.json();
       })
       .then((data) => {
+        console.log(data);
         if (data.success !== undefined) {
           console.log(data);
           navigate("/login", { state: { nextPath} });
