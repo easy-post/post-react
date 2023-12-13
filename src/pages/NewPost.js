@@ -185,6 +185,7 @@ const NewPost = () => {
               id="title"
               placeholder="제목"
               ref={$title}
+              value={""}
             />
             <div
               className="content"
