@@ -10,13 +10,13 @@ const Main = () => {
     <main className='Main'>
       <div className="inner">
         <Routes>
-          <Route path='/' element={<Posts/>}></Route>
-          <Route path='/post' element={<Posts/>}></Route>
-          <Route path='/post/new' element={<NewPost/>}></Route>
-          <Route path='/post/member' element={<Posts/>}></Route>
-          <Route path='/login' element={<Login/>}></Route>
           <Route path='/post/edit/:postId' element={<Post/>}></Route>
           <Route path='/post/:postId' element={<NewPost/>}></Route>
+          <Route path='/post/new' element={<NewPost/>}></Route>
+          <Route path='/post/member' element={<Posts/>}></Route>
+          <Route path='/post' element={<Posts/>}></Route>
+          <Route path='/login' element={<Login/>}></Route>
+          <Route path='/' element={<Posts/>}></Route>
         </Routes>
       </div>
     </main>

@@ -17,7 +17,7 @@ const NewPost = () => {
   const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
-    checkLogin("/new");
+    checkLogin("/post/new");
   }, [checkLogin]);
 
   const savePost = (e) => {
