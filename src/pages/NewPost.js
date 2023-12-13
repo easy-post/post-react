@@ -25,6 +25,7 @@ const NewPost = () => {
         break;
 
       default:
+        console.log("default");
         axios
           .get(`${ApiAdress.LOCAL}${location.pathname}`, {
             withCredentials: true,
