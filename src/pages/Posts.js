@@ -38,6 +38,7 @@ const Posts = () => {
         });
         break;
     }
+    console.log(posts);
   }, []);
 
   return (
