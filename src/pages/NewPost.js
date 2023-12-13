@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "../scss/NewPost.scss";
 import axios from "axios";
 import useLoginCheck from "../components/LoginCheck";
@@ -14,7 +14,7 @@ const NewPost = () => {
   const $content = useRef();
   const { checkLogin, isChecked } = useLoginCheck(location.pathname);
   const navigate = useNavigate();
-  const $saveLoading = useRef();
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     checkLogin("/new");
@@ -127,7 +127,7 @@ const NewPost = () => {
 
   return (
     <div className="NewPost">
-      <CoverScreenLoading ref={$saveLoading}>
+      <CoverScreenLoading style={{display:isSaving?'flex':'none'}}>
         <p>저장 중...</p>
       </CoverScreenLoading>
       {isChecked ? (
