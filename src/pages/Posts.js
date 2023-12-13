@@ -10,6 +10,7 @@ const Posts = () => {
   const [isLoading, setIsLoading] = useState(true);
   const today = new Date();
   const location = useLocation();
+  axios.defaults.withCredentials = true;
 
   useEffect(() => {
     switch (location.pathname) {
