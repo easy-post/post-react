@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../scss/NewPost.scss";
 import axios from "axios";
-import useLoginCheck from "../components/LoginCheck";
+import useLoginCheck from "../hooks/LoginCheck";
 import { useLocation, useNavigate } from "react-router";
 import Loading from "../components/Loading";
 import ApiAdress from "../constants/ApiAddress";

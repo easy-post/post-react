@@ -5,7 +5,7 @@ import PostListElement from "../components/PostListElement";
 import "../scss/Posts.scss";
 import ApiAdress from "../constants/ApiAddress";
 import { Navigate, useLocation, useNavigate } from "react-router";
-import useLoginCheck from '../components/LoginCheck';
+import useLoginCheck from '../hooks/LoginCheck';
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
