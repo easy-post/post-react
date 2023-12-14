@@ -40,6 +40,8 @@
       word-break: break-all;
       .img--wrap{
         max-width: 100%;
+        min-width: 100px;
+        min-height: 100px;
 
         img{
           max-width: 100%;
