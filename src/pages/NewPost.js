@@ -12,11 +12,13 @@ const NewPost = () => {
   const IMAGE_SERVER = "https://image-server-n6n6.onrender.com";
   const location = useLocation();
   const $content = useRef();
+  const isEdit = useState(false);
   const { checkLogin, isChecked } = useLoginCheck(location.pathname);
   const navigate = useNavigate();
   const [isSaving, setIsSaving] = useState(false);
-
-  const $title = useRef();
+  const [title, setTitle] = useState();
+  const [content, setContent] = useState();
+  // useState로 바꾸기 
 
   useEffect(() => {
     switch (location.pathname) {
@@ -25,7 +27,6 @@ const NewPost = () => {
         break;
 
       default:
-        console.log("default");
         axios
           .get(`${ApiAdress.LOCAL}${location.pathname}`, {
             withCredentials: true,
@@ -35,10 +36,11 @@ const NewPost = () => {
           })
           .then((res) => {
             if (!res.status === 200) throw new Error(res.data.message);
+
+            isEdit.current = true;
             
-            console.log($content.current);
-            $title.current.value = res.data.title;
-            $content.current.innerHTML = res.data.html;
+            setTitle(res.data.title);
+            setContent(res.data.html);
           })
           .catch((err) => {
             console.log(err);
@@ -185,13 +187,14 @@ const NewPost = () => {
               id="title"
               placeholder="제목"
               ref={$title}
-              value={""}
+              value={isEdit.current?{title}:""}
             />
             <div
               className="content"
               contentEditable="true"
               onPaste={onPasteHandler}
               ref={$content}
+              dangerouslySetInnerHTML={isEdit.current?{content}:''}
             ></div>
 
             <button type="submit">저장</button>
