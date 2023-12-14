@@ -39,7 +39,7 @@ const onPasteHandler = (e) => {
       range.insertNode($justDiv);
       const $emptyP = document.createElement("p");
 
-      $imgWrap.insertAdjacentElement("afterend", $emptyP);
+      $justDiv.insertAdjacentElement("afterend", $emptyP);
 
       const newRange = document.createRange();
       newRange.setStartAfter($emptyP, 0);
