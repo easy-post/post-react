@@ -18,7 +18,10 @@ const onPasteHandler = (e) => {
     const type = file.type.split("/");
 
     if (type[0] === "image") {
+      const $justDiv = document.createElement("div");
       const $imgWrap = document.createElement("div");
+
+      $justDiv.appendChild($imgWrap);
       $imgWrap.classList.add("img--wrap");
 
       const $loading = document.createElement("img");
@@ -33,7 +36,7 @@ const onPasteHandler = (e) => {
       const selection = window.getSelection();
       const range = selection.getRangeAt(0);
       range.deleteContents();
-      range.insertNode($imgWrap);
+      range.insertNode($justDiv);
       const $emptyP = document.createElement("p");
 
       $imgWrap.insertAdjacentElement("afterend", $emptyP);
