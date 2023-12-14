@@ -176,6 +176,9 @@ const NewPost = () => {
         break;
     }
   }
+  const handleTitleChange = (e)=>{
+    setTitle(e.target.value);
+  }
 
   return (
     <div className="NewPost">
@@ -186,7 +189,8 @@ const NewPost = () => {
             name="title"
             id="title"
             placeholder="제목"
-            value={isEdit?  title  : ""}
+            value={title}
+            onChange={handleTitleChange}
           />
           <div
             className="content"
