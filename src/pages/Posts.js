@@ -4,13 +4,14 @@ import Loading from "../components/Loading";
 import PostListElement from "../components/PostListElement";
 import "../scss/Posts.scss";
 import ApiAdress from "../constants/ApiAddress";
-import { Navigate, useLocation } from "react-router";
+import { Navigate, useLocation, useNavigate } from "react-router";
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const today = new Date();
   const midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate(),0,0,0,0);
   const location = useLocation();
+  const navigate = useNavigate();
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
@@ -32,7 +33,7 @@ const Posts = () => {
             setIsLoading(false);
           })
           .catch((err)=>{
-            Navigate("/login");
+            navigate("/login");
           });
         break;
 
