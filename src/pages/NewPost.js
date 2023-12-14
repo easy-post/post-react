@@ -70,6 +70,7 @@ const onPasteHandler = (e) => {
             $img.setAttribute("alt", "post picture");
 
             // $imgWrap.removeChild($loading);
+            $imgWrap.style.animation = "none";
             $imgWrap.appendChild($img);
           })
           .catch((err) => {
