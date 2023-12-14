@@ -20,16 +20,15 @@ const onPasteHandler = (e) => {
     if (type[0] === "image") {
       const $imgWrap = document.createElement("div");
       $imgWrap.classList.add("img--wrap");
-      $imgWrap.style.backgroundImage = `url(${EXPORT_HOST}/images/utility/loading.png)`
 
-      // const $loading = document.createElement("img");
-      // $loading.setAttribute(
-      //   "src",
-      //   `${EXPORT_HOST + "/images/utility/loading.png"}`
-      // );
-      // $loading.setAttribute("alt", "loading image");
-      // $loading.classList.add("loading--img");
-      // $imgWrap.appendChild($loading);
+      const $loading = document.createElement("img");
+      $loading.setAttribute(
+        "src",
+        `${EXPORT_HOST + "/images/utility/loading.png"}`
+      );
+      $loading.setAttribute("alt", "loading image");
+      $loading.classList.add("loading--img");
+      $imgWrap.appendChild($loading);
 
       const selection = window.getSelection();
       const range = selection.getRangeAt(0);
@@ -69,8 +68,7 @@ const onPasteHandler = (e) => {
             $img.setAttribute("src", res.data);
             $img.setAttribute("alt", "post picture");
 
-            // $imgWrap.removeChild($loading);
-            $imgWrap.style.animation = "none";
+            $imgWrap.removeChild($loading);
             $imgWrap.appendChild($img);
           })
           .catch((err) => {
@@ -167,7 +165,7 @@ const NewPost = () => {
             }
           )
           .then((res) => {
-            console.log(res);
+            console.log(res)
             if (!res.status === 200) throw new Error(res.data.message);
 
             navigate(`/post/${res.data.id}`);
