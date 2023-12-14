@@ -4,6 +4,7 @@ import Posts from '../pages/Posts'
 import NewPost from '../pages/NewPost'
 import Login from '../pages/Login'
 import Post from '../pages/Post';
+import DefaultErrorPage from './error/DefaultErrorPage'
 
 const Main = () => {
   return (
@@ -17,6 +18,7 @@ const Main = () => {
           <Route path='/post' element={<Posts/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/' element={<Posts/>}></Route>
+          <Route path='/error' element={<DefaultErrorPage/>}></Route>
         </Routes>
       </div>
     </main>

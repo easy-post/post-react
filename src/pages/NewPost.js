@@ -114,6 +114,9 @@ const NewPost = () => {
             setContent(res.data.html);
           })
           .catch((err) => {
+            navigate("/error", {state:{
+              errMsg : "회원과 유효하지 않는 게시글 입니다."
+            }})
             console.log(err);
           });
         break;
