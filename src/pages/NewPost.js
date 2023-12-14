@@ -21,6 +21,7 @@ const NewPost = () => {
   // useState로 바꾸기 
 
   useEffect(() => {
+    console.log(location.pathname);
     switch (location.pathname) {
       case "/post/new":
         checkLogin("/post/new");
