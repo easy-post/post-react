@@ -27,19 +27,20 @@ const Posts = () => {
         axios
           .get(`${ApiAdress.LOCAL_POST}/member`, { withCredentials: true })
           .then((res) => {
+            if(!(res.status === 200)) throw new Error("로그인 한 상태가 아닙니다.");
             setPosts(res.data.content);
             setIsLoading(false);
+          })
+          .catch((err)=>{
+            Navigate("/login");
           });
         break;
 
       default:
         axios.get(`${ApiAdress.LOCAL_POST}`).then((res) => {
-          if(!(res.status === 200)) throw new Error("로그인 한 상태가 아닙니다.");
+          
           setPosts(res.data.content);
           setIsLoading(false);
-        })
-        .catch((err)=>{
-          Navigate("/login");
         });
         break;
     }
