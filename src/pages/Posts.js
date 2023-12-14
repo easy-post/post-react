@@ -5,6 +5,7 @@ import PostListElement from "../components/PostListElement";
 import "../scss/Posts.scss";
 import ApiAdress from "../constants/ApiAddress";
 import { Navigate, useLocation, useNavigate } from "react-router";
+import useLoginCheck from '../components/LoginCheck';
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -12,6 +13,7 @@ const Posts = () => {
   const midnight = new Date(today.getFullYear(), today.getMonth(), today.getDate(),0,0,0,0);
   const location = useLocation();
   const navigate = useNavigate();
+  const {checkLogin} = useLoginCheck(location.pathname);
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
@@ -33,7 +35,7 @@ const Posts = () => {
             setIsLoading(false);
           })
           .catch((err)=>{
-            navigate("/login");
+            checkLogin();
           });
         break;
 

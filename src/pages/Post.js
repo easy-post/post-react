@@ -10,8 +10,7 @@ const Post = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const { postId } = useParams();
-  const { checkLogin } = useLoginCheck(location.pathname);
-
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get(`${ApiAdress.LOCAL_POST}/${postId}`)
@@ -27,7 +26,7 @@ const Post = () => {
   }, []);
 
   const edit = (e)=>{
-    checkLogin();
+    navigate(`${location.pathname}/edit`);
   }
 
   return (
