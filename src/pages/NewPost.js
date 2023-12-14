@@ -108,7 +108,7 @@ const NewPost = () => {
             if (!res.status === 200) throw new Error(res.data.message);
 
             setIsEdit(true);
-
+            console.log(res.data);
             setTitle(res.data.title);
             setContent(res.data.html);
           })
@@ -174,7 +174,7 @@ const NewPost = () => {
 
         break;
     }
-  };
+  }
 
   return (
     <div className="NewPost">
