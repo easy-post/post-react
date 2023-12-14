@@ -47,6 +47,7 @@ const NewPost = () => {
           });
         break;
     }
+    console.log(isChecked);
   }, [checkLogin]);
 
   const savePost = (e) => {
@@ -179,7 +180,7 @@ const NewPost = () => {
         {/* <CoverScreenLoading style={{ display: isSaving ? "flex" : "none" }}>
           <p>저장 중...</p>
         </CoverScreenLoading> */}
-        {isChecked ? (
+        {true ? (
           <form onSubmit={savePost}>
             <input
               type="text"
