@@ -25,7 +25,7 @@ function useLoginCheck(nextPath) {
       })
       .catch((err) => {
         console.log(err);
-        setIsChecked(false);
+        // setIsChecked(false);
       });
   }
 

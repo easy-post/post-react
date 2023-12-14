@@ -180,7 +180,7 @@ const NewPost = () => {
         {/* <CoverScreenLoading style={{ display: isSaving ? "flex" : "none" }}>
           <p>저장 중...</p>
         </CoverScreenLoading> */}
-        {true ? (
+        {isChecked ? (
           <form onSubmit={savePost}>
             <input
               type="text"
