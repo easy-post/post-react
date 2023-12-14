@@ -33,7 +33,7 @@ function useLoginCheck(nextPath) {
 
 
 
-  return {checkLogin, isChecked};
+  return {checkLogin, isChecked, setIsChecked};
 }
 
 export default useLoginCheck;

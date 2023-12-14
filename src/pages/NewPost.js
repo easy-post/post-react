@@ -83,7 +83,7 @@ const NewPost = () => {
   const location = useLocation();
   const $content = useRef();
   const [isEdit, setIsEdit] = useState(false);
-  const { checkLogin, isChecked } = useLoginCheck(location.pathname);
+  const { checkLogin, isChecked, setIsChecked } = useLoginCheck(location.pathname);
   const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -97,6 +97,7 @@ const NewPost = () => {
         break;
 
       default:
+        setIsChecked(true);
         axios
           .get(`${ApiAdress.LOCAL}${location.pathname}`, {
             withCredentials: true,
