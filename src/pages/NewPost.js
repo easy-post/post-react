@@ -165,7 +165,7 @@ const NewPost = () => {
             }
           )
           .then((res) => {
-            console.log(res)
+            console.log(res);
             if (!res.status === 200) throw new Error(res.data.message);
 
             navigate(`/post/${res.data.id}`);
