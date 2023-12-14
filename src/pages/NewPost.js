@@ -186,7 +186,7 @@ const NewPost = () => {
             name="title"
             id="title"
             placeholder="제목"
-            value={isEdit? { title } : ""}
+            value={isEdit?  title  : ""}
           />
           <div
             className="content"
