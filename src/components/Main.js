@@ -17,8 +17,8 @@ const Main = () => {
           <Route path='/post/member' element={<Posts/>}></Route>
           <Route path='/post' element={<Posts/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
-          <Route path='/' element={<Posts/>}></Route>
           <Route path='/error' element={<DefaultErrorPage/>}></Route>
+          <Route path='/' element={<Posts/>}></Route>
         </Routes>
       </div>
     </main>

@@ -4,7 +4,7 @@ import Loading from "../components/Loading";
 import PostListElement from "../components/PostListElement";
 import "../scss/Posts.scss";
 import ApiAdress from "../constants/ApiAddress";
-import { useLocation } from "react-router";
+import { Navigate, useLocation } from "react-router";
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -34,8 +34,12 @@ const Posts = () => {
 
       default:
         axios.get(`${ApiAdress.LOCAL_POST}`).then((res) => {
+          if(!(res.status === 200)) throw new Error("로그인 한 상태가 아닙니다.");
           setPosts(res.data.content);
           setIsLoading(false);
+        })
+        .catch((err)=>{
+          Navigate("/login");
         });
         break;
     }
