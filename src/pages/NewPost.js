@@ -125,7 +125,7 @@ const NewPost = () => {
           });
         break;
     }
-  }, [checkLogin]);
+  }, []);
 
   const savePost = (e) => {
     e.preventDefault();
