@@ -31,6 +31,10 @@
         outline: none;
       }
 
+      div{
+        min-height: 1rem;
+      }
+
       .loading--img{
         display: block;
         animation: ani-loading 2s infinite linear;
