@@ -43,7 +43,7 @@ const onPasteHandler = (e) => {
       $justDiv.insertAdjacentElement("afterend", $emptyDiv);
 
       const newRange = document.createRange();
-      newRange.setStartAfter($emptyDiv);
+      newRange.setStart($emptyDiv, 0);
       newRange.collapse(true);
       selection.removeAllRanges();
       selection.addRange(newRange);
