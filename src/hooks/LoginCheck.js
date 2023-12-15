@@ -29,10 +29,6 @@ function useLoginCheck(nextPath) {
       });
   }
 
-
-
-
-
   return {checkLogin, isChecked, setIsChecked};
 }
 

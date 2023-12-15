@@ -37,12 +37,13 @@ const onPasteHandler = (e) => {
       const range = selection.getRangeAt(0);
       range.deleteContents();
       range.insertNode($justDiv);
-      const $emptyP = document.createElement("p");
+      const $emptyDiv = document.createElement("div");
+      $emptyDiv.textContent = ' ';
 
-      $justDiv.insertAdjacentElement("afterend", $emptyP);
+      $justDiv.insertAdjacentElement("afterend", $emptyDiv);
 
       const newRange = document.createRange();
-      newRange.setStartAfter($emptyP, 0);
+      newRange.setStartAfter($emptyDiv, 0);
       newRange.collapse(true);
       selection.removeAllRanges();
       selection.addRange(newRange);
@@ -100,7 +101,7 @@ const NewPost = () => {
         break;
 
       default:
-        setIsChecked(true);
+        setIsChecked(false);
         axios
           .get(`${ApiAdress.LOCAL}${location.pathname}`, {
             withCredentials: true,

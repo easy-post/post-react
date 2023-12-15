@@ -177,19 +177,9 @@ const Login = () => {
           <p className="failed empty" ref={$emptyMsg}>
             모두 입력해 주세요.
           </p>
-          <input
-            type="text"
-            name="loginId"
-            placeholder="아이디"
-            maxLength="16"
+          <input type="text" name="loginId" placeholder="아이디" maxLength="16"
           ></input>
-          <input
-            type="password"
-            name="password"
-            placeholder="비밀번호"
-            autoComplete="on"
-            maxLength="32"
-          ></input>
+          <input type="password" name="password" placeholder="비밀번호" autoComplete="on" maxLength="32"></input>
           <input type="submit" value="로그인"></input>
           <button onClick={registerOpen}>회원가입</button>
         </form>
@@ -198,49 +188,26 @@ const Login = () => {
 
       <div id="register--modal" ref={$registerModal}>
         <div className="inner">
-          <form
-            className="register--form"
-            method="post"
-            ref={$registerForm}
-            onSubmit={registy}
-          >
-            <input
-              type="text"
-              name="loginId"
-              placeholder="아이디"
-              maxLength="16"
-            ></input>
+          <form className="register--form" method="post" ref={$registerForm} onSubmit={registy}>
+            <input type="text" name="loginId" placeholder="아이디" maxLength="16"></input>
             <div className="register--nickname--wrap">
-              <input
-                onKeyDown={handlerNicknameKeydown}
-                type="text"
-                name="nickname"
-                id="nickname"
-                placeholder="닉네임"
-                maxLength="16"
-              ></input>
+              <input onKeyDown={handlerNicknameKeydown} type="text" name="nickname" 
+              id="nickname" placeholder="닉네임" maxLength="16"></input>
               <button onClick={nicknameDuplicateValid}>중복 확인</button>
             </div>
 
-            <p
-              className="success nickname--message"
-              ref={$nicknameValidSuccessMsg}
-            >
+            <p className="success nickname--message"
+              ref={$nicknameValidSuccessMsg}>
               사용 가능한 닉네임 입니다!
             </p>
-            <p
-              className="failed nickname--message"
-              ref={$nicknameValidFailedMsg}
-            >
+
+            <p className="failed nickname--message"
+              ref={$nicknameValidFailedMsg}>
               중복된 닉네임 입니다.
             </p>
-            <input
-              type="password"
-              name="password"
-              placeholder="비밀번호"
-              autoComplete="on"
-              maxLength="32"
-            ></input>
+
+            <input type="password" name="password" placeholder="비밀번호"
+              autoComplete="on" maxLength="32"></input>
             <input type="submit" value="회원가입"></input>
           </form>
           <button className="close" onClick={registerClose}>

@@ -17,15 +17,9 @@ const Header = () => {
 
         <div className="menu-wrap">
           <ul className="menu">
-            <li>
-              <Link to={"/post"}>글 목록</Link>
-            </li>
-            <li>
-              <Link to={"/post/new"}>새 글</Link>
-            </li>
-            <li>
-              <Link to={"/post/member"}>내 글</Link>
-            </li>
+            <li><Link to={"/post"}>글 목록</Link></li>
+            <li><Link to={"/post/new"}>새 글</Link></li>
+            <li><Link to={"/post/member"}>내 글</Link></li>
           </ul>
         </div>
       </div>
