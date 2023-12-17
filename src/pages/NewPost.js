@@ -116,6 +116,7 @@ const NewPost = () => {
             console.log(res.data);
             setTitle(res.data.title);
             setContent(res.data.html);
+            setIsChecked(true);
           })
           .catch((err) => {
             navigate("/error", {state:{
