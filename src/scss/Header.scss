@@ -1,34 +1,62 @@
-.Header{
-  .inner{
+.Header {
+  .inner {
     padding-top: 20px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
 
-    .LogoutBtn{
+    .logo-wrap {
+      .logo {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        a {
+          display: block;
+          width: 150px;
+          height: 150px;
+          transition: .5s;
+          &:hover{
+            transform: scale(1.2);
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+
+    .LogoutBtn {
       align-self: flex-end;
     }
 
-    .logo-wrap{
+    .logo-wrap {
       text-align: center;
       padding: 2rem 0;
       font-size: 1.6rem;
-      a{
+      a {
         display: block;
       }
     }
 
-    .menu-wrap{
+    .menu-wrap {
       width: 100%;
-      .menu{
+      .menu {
         display: flex;
         justify-content: space-between;
         font-size: 2rem;
-        
-        li{
+
+        li {
           flex: 0 0 200px;
 
-          a{
+          a {
             display: block;
             width: 100%;
             text-align: center;
@@ -37,7 +65,5 @@
         }
       }
     }
-
-
   }
 }

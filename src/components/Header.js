@@ -11,7 +11,9 @@ const Header = () => {
 
         <div className="logo-wrap">
           <h1 className="logo">
-            <Link to={"/"}>LOGO</Link>
+            <Link to={"/"}>
+              <img src={process.env.PUBLIC_URL + "/images/logo.png"} alt="logo" ></img>
+            </Link>
           </h1>
         </div>
 
