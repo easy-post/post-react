@@ -45,7 +45,7 @@ const Login = () => {
       .then((data) => {
         console.log(data);
         setIsNicknameValid(data);
-        if (data) {
+        if (data.success) {
           $nicknameValidFailedMsg.current.style.display = "none";
           $nicknameValidSuccessMsg.current.style.display = "block";
         } else {
